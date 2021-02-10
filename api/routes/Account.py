@@ -13,7 +13,7 @@ class AccountHandler(RequestHandler):
     def get(self):
         try:
             balance = self.settings['balance']
-            response = {"Account balance": balance }
+            response = { "balance": balance }
 
             self.set_status(200, 'Ok')
             self.set_header("Access-Control-Allow-Origin", "*")

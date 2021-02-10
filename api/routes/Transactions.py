@@ -153,18 +153,17 @@ class TransactionHandler(RequestHandler):
 
     # GET /transactions/<transactionId >
     @coroutine
-    def get(self, id):
+    def get(self, transactionId):
 
         try:
            transactions = self.settings['transactions']
 
            for transaction in transactions:
-               if transaction.id == id:
+               if transaction['id'] == str(transactionId):
                    self.set_status(200, 'Ok')
                    self.set_header("Access-Control-Allow-Origin", "*")
                    self.write(json.dumps(transaction))
                    return
-
 
            response = { "Error": "Transaction not found." }
            self.set_status(404, 'Ok')
